@@ -1,0 +1,16 @@
+{
+  "name": "youtube-ai",
+  "version": "1.0.0",
+  "description": "![Python](https://img.shields.io/badge/Python-3.10%2B-blue?style=for-the-badge&logo=python&logoColor=white) ![LangChain](https://img.shields.io/badge/LangChain-Integration-orange?style=for-the-badge&logo=langchain&logoColor=white) ![Streamlit](https://img.shields.io/badge/Streamlit-UI-red?style=for-the-badge&logo=streamlit&logoColor=white) ![LangSmith](https://img.shields.io/badge/LangSmith-Observability-green?style=for-the-badge) ![RAG](https://img.shields.io/badge/Architecture-Advanced%20RAG-purple?style=for-the-badge) ![Cache](https://img.shields.io/badge/Performance-Dual%20Layer%20Caching-yellow?style=for-the-badge)",
+  "main": "index.js",
+  "scripts": {
+    "dev": "concurrently \"uvicorn main:app --reload --port 8000\" \"npm run dev --prefix web-client\"",
+    "install:all": "pip install -r requirements.txt && npm install --prefix web-client"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^9.2.1"
+  }
+}

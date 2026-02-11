@@ -1,0 +1,47 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+*.log
+venv/
+env/
+
+# Environment
+.env
+.env.local
+app/.env
+
+# IDEs
+.DS_Store
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Node.js (Frontend)
+node_modules/
+web-client/node_modules/
+web-client/dist/
+web-client/build/
+npm-debug.log*
+package-lock.json
+
+# Data & Temporary Files
+data/
+*.tmp
+debug_output.txt
+validator_debug.txt
+verify_pipeline.py
+test_llm.py
+pipeline_debug.log
+
+# OS
+Thumbs.db
+.DS_Store

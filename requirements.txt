@@ -1,0 +1,47 @@
+# FastAPI & Server
+fastapi
+uvicorn
+python-multipart
+pydantic
+pydantic-settings
+requests
+
+# Database & Storage
+sqlalchemy
+asyncpg
+redis
+qdrant-client
+
+# Auth & Security
+python-jose[cryptography]
+passlib[argon2]
+argon2-cffi
+bcrypt
+
+# AI & RAG
+langchain
+langchain-community
+langchain-groq
+langchain-google-genai
+langchain-huggingface
+sentence-transformers
+faiss-cpu
+yt-dlp
+youtube-transcript-api
+pypdf
+webvtt-pytube
+openai-whisper
+python-dotenv
+pandas
+numpy
+streamlit
+rank_bm25
+pytube
+tqdm
+scikit-learn
+langsmith
+fastapi
+uvicorn
+python-multipart
+pydantic
+pypdf
