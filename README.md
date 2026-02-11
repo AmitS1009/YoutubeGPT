@@ -63,48 +63,44 @@ Frontend (React/TS) → FastAPI Backend → RAG Pipeline → Vector DB (Qdrant)
 ## 🏗️ System Architecture
 
 ```mermaid
-graph LR
-    subgraph Frontend["🎨 Frontend Layer"]
-        UI[React TypeScript UI]
-        Auth[Auth Context]
-        API[Axios Client]
-    end
+graph TB
+    UI[🎨 React TypeScript UI]
+    Auth[🔐 Authentication Context]
+    API[📡 Axios API Client]
     
-    subgraph Backend["⚙️ Backend Layer"]
-        FastAPI[FastAPI Server]
-        AuthMW[JWT Middleware]
-        Routes[API Routes]
-    end
+    FastAPI[⚙️ FastAPI Server]
+    AuthMW[🛡️ JWT Auth Middleware]
+    Routes[🛤️ API Routes]
     
-    subgraph RAG["🧠 RAG Pipeline"]
-        Ingest[Content Ingestion]
-        Chunk[Smart Chunking]
-        Embed[Embeddings]
-        Retrieve[Hybrid Retrieval]
-        Rerank[Reranking]
-        LLM[LLM Generation]
-    end
+    Ingest[📥 Content Ingestion]
+    Chunk[✂️ Smart Chunking]
+    Embed[🧮 Embeddings Generation]
+    Retrieve[🔍 Hybrid Retrieval]
+    Rerank[⭐ Cross-Encoder Reranking]
+    LLM[🤖 LLM Generation]
     
-    subgraph Data["💾 Data Layer"]
-        PG[(PostgreSQL)]
-        R[(Redis)]
-        Q[(Qdrant)]
-    end
+    PG[(💾 PostgreSQL)]
+    R[(⚡ Redis Cache)]
+    Q[(🔮 Qdrant Vector DB)]
     
     UI --> Auth
     Auth --> API
     API --> FastAPI
     FastAPI --> AuthMW
     AuthMW --> Routes
+    
     Routes --> Ingest
+    Routes --> PG
+    Routes --> R
+    
     Ingest --> Chunk
     Chunk --> Embed
     Embed --> Q
+    
+    Routes --> Retrieve
     Retrieve --> Q
     Retrieve --> Rerank
     Rerank --> LLM
-    Routes --> PG
-    Routes --> R
 ```
 
 ---
