@@ -63,48 +63,48 @@ Frontend (React/TS) → FastAPI Backend → RAG Pipeline → Vector DB (Qdrant)
 ## 🏗️ System Architecture
 
 ```mermaid
-graph TB
-    subgraph Frontend
+graph LR
+    subgraph Frontend["🎨 Frontend Layer"]
         UI[React TypeScript UI]
-        Auth[Authentication Context]
-        API[Axios API Client]
+        Auth[Auth Context]
+        API[Axios Client]
     end
     
-    subgraph Backend
+    subgraph Backend["⚙️ Backend Layer"]
         FastAPI[FastAPI Server]
-        AuthMiddleware[JWT Auth Middleware]
+        AuthMW[JWT Middleware]
         Routes[API Routes]
     end
     
-    subgraph RAG Pipeline
-        Ingestion[Content Ingestion]
-        Chunking[Smart Chunking]
-        Embedding[Embeddings]
-        Retrieval[Hybrid Retrieval]
-        Rerank[Cross-Encoder Reranking]
+    subgraph RAG["🧠 RAG Pipeline"]
+        Ingest[Content Ingestion]
+        Chunk[Smart Chunking]
+        Embed[Embeddings]
+        Retrieve[Hybrid Retrieval]
+        Rerank[Reranking]
         LLM[LLM Generation]
     end
     
-    subgraph Data Layer
-        Postgres[(PostgreSQL)]
-        Redis[(Redis Cache)]
-        Qdrant[(Qdrant Vector DB)]
+    subgraph Data["💾 Data Layer"]
+        PG[(PostgreSQL)]
+        R[(Redis)]
+        Q[(Qdrant)]
     end
     
     UI --> Auth
     Auth --> API
     API --> FastAPI
-    FastAPI --> AuthMiddleware
-    AuthMiddleware --> Routes
-    Routes --> RAG Pipeline
-    Ingestion --> Chunking
-    Chunking --> Embedding
-    Embedding --> Qdrant
-    Retrieval --> Qdrant
-    Retrieval --> Rerank
+    FastAPI --> AuthMW
+    AuthMW --> Routes
+    Routes --> Ingest
+    Ingest --> Chunk
+    Chunk --> Embed
+    Embed --> Q
+    Retrieve --> Q
+    Retrieve --> Rerank
     Rerank --> LLM
-    Routes --> Postgres
-    Routes --> Redis
+    Routes --> PG
+    Routes --> R
 ```
 
 ---
@@ -263,44 +263,6 @@ npm run dev
 - **Frontend**: http://localhost:5173
 - **Backend API**: http://localhost:8000
 - **API Docs**: http://localhost:8000/docs
-
----
-
-## 🔐 Environment Configuration
-
-Create a `.env` file in the root directory:
-
-```bash
-# LLM API Keys
-GROQ_API_KEY=your_groq_api_key
-GOOGLE_API_KEY=your_google_api_key
-HUGGINGFACEHUB_API_TOKEN=your_hf_token
-
-# Model Selection
-LLM_PROVIDER=groq
-GROQ_MODEL_NAME=llama-3.1-8b-instant
-GEMINI_MODEL_NAME=gemini-1.5-flash
-
-# Embeddings
-EMBEDDING_MODEL_NAME=sentence-transformers/all-MiniLM-L6-v2
-
-# Database (PostgreSQL)
-DATABASE_URL=postgresql://user:password@host:port/database
-
-# Redis
-REDIS_URL=redis://default:password@host:port
-
-# Qdrant Vector Database
-QDRANT_URL=https://your-cluster.qdrant.io:6333
-QDRANT_API_KEY=your_qdrant_api_key
-
-# Security
-SECRET_KEY=your_jwt_secret_key
-
-# Optional: LangSmith Observability
-# LANGCHAIN_TRACING_V2=true
-# LANGCHAIN_API_KEY=your_langsmith_key
-```
 
 ---
 
