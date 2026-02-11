@@ -29,7 +29,7 @@ faiss-cpu
 yt-dlp
 youtube-transcript-api
 pypdf
-webvtt-pytube
+webvtt-py
 openai-whisper
 python-dotenv
 pandas
