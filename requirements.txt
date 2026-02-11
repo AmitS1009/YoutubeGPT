@@ -45,3 +45,4 @@ uvicorn
 python-multipart
 pydantic
 pypdf
+gunicorn
